@@ -1,0 +1,120 @@
+﻿<div>
+    <h1>Mantenimiento de equipos</h1>
+</div>
+
+<form asp-action="crearRegistro">
+    <div class="form-group">
+        <div class="row mb-4">
+            <div  class="col-sm-2">
+                @Html.Label("lblNombre", "nombre")  
+            </div>
+            <div class="col-sm-4">
+                @Html.TextBox("nombre","", new{@class="form-control", placeHolder="ingrese su nombre"})
+            </div>
+
+             <div  class="col-sm-2">
+                @Html.Label("lblDescripcion", "Descripcion")  
+            </div>
+            <div class="col-sm-4">
+                @Html.TextArea("descripcion","", new{@class="form-control", placeHolder="ingrese la descripcion"})
+            </div>
+        </div>
+        @*seleccion tipo equipo*@
+            <div class="row mb-4">
+            <div  class="col-sm-2">
+                @Html.Label("lbltipoEquipo", "Tipo Equipo")  
+            </div>
+            <div class="col-sm-4">
+                @Html.DropDownList("tipo_equipo_id",ViewData["listadoTipoEquipo"]as SelectList , "--Seleccione su tipo", new{@class="form-control"})
+            </div>
+        </div>
+        @*marcas y modelo*@
+        <div class="row mb-4">
+            <div class="col-sm-2">
+                @Html.Label("lblMarca", "Marca")
+            </div>
+            <div class="col-sm-4">
+                @Html.DropDownList("marca_id",ViewData["listadoDeMarcas"]as SelectList, "--Seleccione una marca", new{@class="form-control"})
+            </div>
+
+            <div class="col-sm-2">
+                @Html.Label("lblModelo", "Modelo")
+            </div>
+            <div class="col-sm-4">
+                @Html.TextBox("Modelo","", new{@class="form-control", placeHolder="ingrese la marca"})
+            </div>
+        </div>
+        @*años de compra y costo*@
+        <div class="row mb-4">
+            <div class="col-sm-2">
+                @Html.Label("lblanio_compra", "año de compra")
+            </div>
+            <div class="col-sm-4">
+                @Html.TextBox("anio_compra","" ,new{@class="form-control"})
+            </div>
+
+            <div class="col-sm-2">
+                @Html.Label("lblcosto", "costo")
+            </div>
+            <div class="col-sm-4">
+                @Html.TextBox("costo","", new{@class="form-control"})
+            </div>
+        </div>
+        @*años de compra y costo*@
+        <div class="row mb-4">
+            <div class="col-sm-2">
+                @Html.Label("lblvida_util", "vida util")
+            </div>
+            <div class="col-sm-4">
+                @Html.TextBox("vida_util","" ,new{@class="form-control"})
+            </div>
+
+            <div class="col-sm-2">
+                @Html.Label("lblestado_equipo", "Estado de equipo")
+            </div>
+            <div class="col-sm-4">
+                @Html.DropDownList("estado_equipo_id", ViewData[" listadoEstadoEquipo"] as SelectList, "Seleccione un estado", new{@class="form-control"})
+            </div>
+        </div>
+        @*años de compra y costo*@
+        <div class="row mb-4">
+            <div class="col-sm-2">
+            </div>
+            <div class="col-sm-4">
+            </div>
+
+            <div class="col-sm-2">
+                <input type="submit" class="btn btn-success text-center btn lg"/>
+            </div>
+            <div class="col-sm-4">
+            </div>
+        </div>
+    </div>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Equipo</th>
+                <th>Descripcion</th>
+                <th>Marca</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var equipo in (IEnumerable<dynamic>)ViewData["listadoDeEquipos"])
+            {
+                <tr>
+                    <td>@equipo.nombre</td>
+                    <td>@equipo.descripcion</td>
+                    <td>@equipo.marca_nombre</td>
+
+                </tr>
+                
+            }
+            
+        </tbody>
+
+    </table>
+ </form>
+
+    
+
+    
